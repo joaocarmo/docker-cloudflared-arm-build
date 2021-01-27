@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+FILE=./cloudflared
+
+if [ ! -f "$FILE" ]; then
+  >&2 echo "No compiled binary found"
+  exit 1
+fi
+
+sudo systemctl stop cloudflared
+sudo cp "$FILE" /usr/local/bin
+sudo chmod +x /usr/local/bin/cloudflared
+sudo systemctl start cloudflared
+cloudflared -v
+sudo systemctl status cloudflared

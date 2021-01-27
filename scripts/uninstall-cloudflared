@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+SERVICE=cloudflared
+
+sudo systemctl stop ${SERVICE}
+sudo systemctl disable ${SERVICE}
+sudo systemctl daemon-reload
+sudo deluser ${SERVICE}
+sudo rm /etc/default/${SERVICE}
+sudo rm /etc/systemd/system/${SERVICE}.service
+sudo rm /usr/local/bin/${SERVICE}
